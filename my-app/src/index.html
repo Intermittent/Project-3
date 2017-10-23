@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+  <head>
+    <link rel = "stylesheet" href="style.css">
+    <link rel = "stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.production.min.js"> </script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.slim.min.js"> </script>
+     <script type="text/javascript" src= "App.js"></script>
+    <script src = "https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.runtime.min.js"></script>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+    <script type="text/javascript" src="http://unionplatform.com/cdn/OrbiterMicro_latest.js"></script>
+    <script type="text/javascript" src="http://cdn.unioncloud.io/OrbiterMicro_latest.js"></script>
+    <script type="text/javascript" src="http://unionplatform.com/cdn/Orbiter_latest.js"></script>
+    <script type="text/javascript" src="OrbiterMicro_1.0.0.370_Release_min.js"></script>
+  </head>
+
+  <body>
+
+    <div class="drawpad">
+    <div id="controls">
+      <span class="title-name">Draw <i>Pen</i></span>
+      <a href="#" id="clear">New Page</a>
+      <span class="menu-name">Pencil Bold:</span>
+      <select id="thickness" class="fixed">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+        <option value="30">30</option>
+        <option value="35">35</option>
+        <option value="40">40</option>
+        <option value="45">45</option>
+        <option value="50">50</option>
+        <option value="60">60</option>
+        <option value="70">70</option>
+        <option value="80">80</option>
+        <option value="90">90</option>
+        <option value="100">100</option>
+      </select>
+  <span class="menu-name">Pencil Color:</span>
+    <select id="color">
+      <option value="#FFFFFF" style="background-color:#FFFFFF; color:black">White</option>
+      <option value="#000000" style="background-color:#000000; color:black">Black</option>
+      <option value="#808080" style="background-color:#808080; color:black">Gray</option>
+      <option value="#5BC236" style="background-color:#5BC236; color:black">Apple Green</option>
+      <option value="#faff45" style="background-color:#faff45; color:black">Canary Yellow</option>
+      <option value="#DC143C" style="background-color:#DC143C; color:black">Crimson Red</option>
+      <option value="#550000" style="background-color:#550000; color:black">Dark Brown</option>
+      <option value="#097090" style="background-color:#097090; color:black">Grass Green</option>
+      <option value="#FFA500" style="background-color:#FFA500; color:black">Orange</option>
+      <option value="#A0522D" style="background-color:#A0522D; color:black">Sienna Brown</option>
+      <option value="#1f47d7" style="background-color:#1f47d7; color:black">True Blue</option>
+      <option value="#800080" style="background-color:#800080; color:black">Violet</option>
+      <option value="#324AB2" style="background-color:#324AB2; color:black">Violet Blue</option>
+      </select>
+    <span class="menu-name">Pad Color:</span>
+    <select id="fullcolor" onchange="fillcolor(this.value);">
+      <option value="#FFFFFF" style="background-color:#FFFFFF; color:black">White</option>
+      <option value="#000000" style="background-color:#000000; color:black">Black</option>
+      <option value="#808080" style="background-color:#808080; color:black">Gray</option>
+      <option value="#5BC236" style="background-color:#5BC236; color:black">Apple Green</option>
+      <option value="#faff45" style="background-color:#faff45; color:black">Canary Yellow</option>
+      <option value="#DC143C" style="background-color:#DC143C; color:black">Crimson Red</option>
+      <option value="#550000" style="background-color:#550000; color:black">Dark Brown</option>
+      <option value="#097090" style="background-color:#097090; color:black">Grass Green</option>
+      <option value="#FFA500" style="background-color:#FFA500; color:black">Orange</option>
+      <option value="#A0522D" style="background-color:#A0522D; color:black">Sienna Brown</option>
+      <option value="#1f47d7" style="background-color:#1f47d7; color:black">True Blue</option>
+      <option value="#800080" style="background-color:#800080; color:black">Violet</option>
+      <option value="#324AB2" style="background-color:#324AB2; color:black">Violet Blue</option>
+    </select>
+      </div>
+  <canvas id="canvas"></canvas>
+  
+  <script>
+  document.getElementById('clear').addEventListener('click', function() {
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById("canvas").style.background="#FFFFFF";
+      }, false);
+
+</script> 
+
+
+    <!-- Login, make this dynamic -->
+    <form action="/action_page.php">
+
+      <div class="imgcontainer">
+        <img src="anon.png" alt="Avatar" class="avatar">
+      </div>
+
+      <div class="container">
+        
+        <label><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required>
+
+        <label><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <button type="submit">Login</button>
+        <input type="checkbox" checked="checked"> Remember me
+
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <span class="psw">Forgot <a href="">password?</a></span>
+      </div>
+
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <span class="psw">New <a href="">User?</a></span>
+      </div>
+
+    </form>
+
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="">Home</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="">Boards <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Profile</a></li>
+        </ul>
+        <form class="navbar-form navbar-left">
+
+        </form>
+
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+  <!-- Top Chat -->
+    <div>
+
+      <input type="submit" value="Submit">
+
+    </div>
+    
+
+  <!-- Whiteboard space -->
+     <!--Drop down menus for selecting line thickness and color-->
+    <div id="controls">
+      Size:
+      <select id="thickness" class="fixed">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="20">20</option>
+      </select>
+   
+      Color:
+      <select id="color">
+        <option value="#FFFFFF">#FFFFFF</option>
+        <option value="#AAAAAA">#AAAAAA</option>
+        <option value="#666666">#666666</option>
+        <option value="#000000">#000000</option>
+        <option value="#9BA16C">#9BA16C</option>
+        <option value="#CC8F2B">#CC8F2B</option>
+        <option value="#63631D">#63631D</option>
+      </select>
+    </div>
+   
+    <!--The canvas where drawings will be displayed-->
+    <canvas id="canvas"></canvas>
+   
+    <!--A status text field, for displaying connection information-->
+    <div id="status"></div>
+
+
+
+  <!-- Bottom Chat -->
+    <div>
+
+      <input type="submit" value="Submit">
+
+    </div>
+
+    <div id="root"></div>
+
+
+  </body>
+
+</html>
